@@ -67,22 +67,22 @@ It contains 541 patient records with 41 unique features, given as follows:
    
 ### HOW TO RUN THE PROJECT
 *  Clone the Repository:
- - Download the project files by cloning the repository to your local machine:
-   'git clone [https://github.com/ACM40960/project-muskaan0902]'
+Download the project files by cloning the repository to your local machine:
+  ' git clone [https://github.com/ACM40960/project-muskaan0902]'
 
 * Install Dependencies:
- - Navigate to the project directory and install the required Python packages using:
+Navigate to the project directory and install the required Python packages using:
     'pip install -r requirements.txt'
 
 * Run the Jupyter Notebook:
- - Open and run the Jupyter Notebook to train the models and analyze the results:
+Open and run the Jupyter Notebook to train the models and analyze the results:
     'jupyter notebook pcodproject.ipynb'
 
 * Start the Web Application:
- - Launch the web application to interact with the model via a user-friendly interface:
+Launch the web application to interact with the model via a user-friendly interface:
     'python pcos_app.py'
 
 * Access the Web Interface:
- - Open your web browser and navigate to http://127.0.0.1:5000/ to use the PCOS prediction form and view the results.  
+Open your web browser and navigate to http://127.0.0.1:5000/ to use the PCOS prediction form and view the results.  
 
 
