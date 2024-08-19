@@ -57,13 +57,12 @@ It contains 541 patient records with 41 unique features, given as follows:
 - Endometrium (mm): Thickness of the endometrium.
 
   ### FILE DESCRIPTION
-  -  PCOS_data: original data file
-  -  pcodproject.ipynb : jupyter notebook that contains the code of data preparation, exploration, model tuning and evaluation
-  -  best_model.pkl: The classification model
-  -  App: folder that contains all the files for the web page development
-  -  
-  -  pcos_app.py: Flask API that bind between the classification model and the web page.
-  -  Templates:
+  * PCOS_data: original data file
+  * pcodproject.ipynb : jupyter notebook that contains the code of data preparation, exploration, model tuning and evaluation
+  * App: folder that contains all the files for the web page development
+    - pcos_app.py: Flask API that bind between the classification model and the web page.
+    - best_model.pkl: The classification model
+    - Templates:
     - PCOS_Classifier.html: A webpage that takes all the health parameters as inputs and gives a prediction that the patient will have pcos or not
 
 
