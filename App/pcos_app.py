@@ -61,9 +61,9 @@ def predict():
         if model is not None:
             try:
                 prediction = model.predict(final_features)
-                if prediction[0] == 0:
+                if prediction[0] == 1:
                     output = "PCOS DETECTED"
-                elif prediction[0] == 1:
+                elif prediction[0] == 0:
                     output = "PCOS NOT DETECTED"
                 logging.debug(f"Prediction result: {output}")
             except Exception as e:
