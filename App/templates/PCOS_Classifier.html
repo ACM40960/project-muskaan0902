@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCOS Classifier</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e8f0f7;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #004085;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .quote {
+            text-align: center;
+            font-style: italic;
+            color: #0069d9;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            font-size: 0.9em;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: #80bdff;
+            outline: none;
+            background-color: #ffffff;
+        }
+
+        input[type="submit"] {
+            grid-column: span 3;
+            background-color: #004085;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #002752;
+        }
+
+        h3 {
+            text-align: center;
+            color: #004085;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        .result {
+            text-align: center;
+            color: #d9534f;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.2em;
+            padding: 10px;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 900px) {
+            form {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            input[type="submit"] {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            form {
+                grid-template-columns: 1fr;
+            }
+
+            input[type="submit"] {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>PCOS Prediction Form</h2>
+
+        <div class="quote">
+            "Your health is an investment, not an expense."
+        </div>
+
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="age">Age (yrs):</label>
+                <input type="text" id="age" name="age" required>
+            </div>
+
+            <div class="form-group">
+                <label for="weight">Weight (Kg):</label>
+                <input type="text" id="weight" name="weight" required>
+            </div>
+
+            <div class="form-group">
+                <label for="height">Height (Cm):</label>
+                <input type="text" id="height" name="height" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bmi">BMI:</label>
+                <input type="text" id="bmi" name="bmi" required>
+            </div>
+
+            <div class="form-group">
+                <label for="blood_group">Blood Group:</label>
+                <input type="text" id="blood_group" name="blood_group" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pulse_rate">Pulse rate (bpm):</label>
+                <input type="text" id="pulse_rate" name="pulse_rate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="rr">RR (breaths/min):</label>
+                <input type="text" id="rr" name="rr" required>
+            </div>
+
+            <div class="form-group">
+                <label for="hb">Hb (g/dl):</label>
+                <input type="text" id="hb" name="hb" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cycle">Cycle (R/I):</label>
+                <input type="text" id="cycle" name="cycle" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cycle_length">Cycle length (days):</label>
+                <input type="text" id="cycle_length" name="cycle_length" required>
+            </div>
+
+            <div class="form-group">
+                <label for="marriage_status">Marriage Status (Yrs):</label>
+                <input type="text" id="marriage_status" name="marriage_status" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pregnant">Pregnant (Y/N):</label>
+                <select id="pregnant" name="pregnant" required>
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="abortions">No. of abortions:</label>
+                <input type="text" id="abortions" name="abortions" required>
+            </div>
+
+            <div class="form-group">
+                <label for="beta_hcg_i">I beta-HCG (mIU/mL):</label>
+                <input type="text" id="beta_hcg_i" name="beta_hcg_i" required>
+            </div>
+
+            <div class="form-group">
+                <label for="beta_hcg_ii">II beta-HCG (mIU/mL):</label>
+                <input type="text" id="beta_hcg_ii" name="beta_hcg_ii" required>
+            </div>
+
+            <div class="form-group">
+                <label for="fsh">FSH (mIU/mL):</label>
+                <input type="text" id="fsh" name="fsh" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lh">LH (mIU/mL):</label>
+                <input type="text" id="lh" name="lh" required>
+            </div>
+
+            <div class="form-group">
+                <label for="fsh_lh_ratio">FSH/LH:</label>
+                <input type="text" id="fsh_lh_ratio" name="fsh_lh_ratio" required>
+            </div>
+
+            <div class="form-group">
+                <label for="hip">Hip (inch):</label>
+                <input type="text" id="hip" name="hip" required>
+            </div>
+
+            <div class="form-group">
+                <label for="waist">Waist (inch):</label>
+                <input type="text" id="waist" name="waist" required>
+            </div>
+
+            <div class="form-group">
+                <label for="waist_hip_ratio">Waist:Hip Ratio:</label>
+                <input type="text" id="waist_hip_ratio" name="waist_hip_ratio" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tsh">TSH (mIU/L):</label>
+                <input type="text" id="tsh" name="tsh" required>
+            </div>
+
+            <div class="form-group">
+                <label for="amh">AMH (ng/mL):</label>
+                <input type="text" id="amh" name="amh" required>
+            </div>
+
+            <div class="form-group">
+                <label for="prl">PRL (ng/mL):</label>
+                <input type="text" id="prl" name="prl" required>
+            </div>
+
+            <div class="form-group">
+                <label for="vit_d3">Vit D3 (ng/mL):</label>
+                <input type="text" id="vit_d3" name="vit_d3" required>
+            </div>
+
+            <div class="form-group">
+                <label for="prg">PRG (ng/mL):</label>
+                <input type="text" id="prg" name="prg" required>
+            </div>
+
+            <div class="form-group">
+                <label for="rbs">RBS (mg/dl):</label>
+                <input type="text" id="rbs" name="rbs" required>
+            </div>
+
+            <div class="form-group">
+                <label for="weight_gain">Weight gain (Y/N):</label>
+                <select id="weight_gain" name="weight_gain" required>
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="hair_growth">Hair growth (Y/N):</label>
+                <select id="hair_growth" name="hair_growth" required>
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="skin_darkening">Skin darkening (Y/N):</label>
+                <select id="skin_darkening" name="skin_darkening" required>
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="hair_loss">Hair loss (Y/N):</label>
+                <select id="hair_loss" name="hair_loss" required>
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="pimples">Pimples (Y/N):</label>
+                <select id="pimples" name="pimples" required>
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="fast_food">Fast food (Y/N):</label>
+                <select id="fast_food" name="fast_food" required>
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="reg_exercise">Reg. Exercise (Y/N):</label>
+                <select id="reg_exercise" name="reg_exercise" required>
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="bp_systolic">BP Systolic (mmHg):</label>
+                <input type="text" id="bp_systolic" name="bp_systolic" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bp_diastolic">BP Diastolic (mmHg):</label>
+                <input type="text" id="bp_diastolic" name="bp_diastolic" required>
+            </div>
+
+            <div class="form-group">
+                <label for="follicle_no_l">Follicle No. (L):</label>
+                <input type="text" id="follicle_no_l" name="follicle_no_l" required>
+            </div>
+
+            <div class="form-group">
+                <label for="follicle_no_r">Follicle No. (R):</label>
+                <input type="text" id="follicle_no_r" name="follicle_no_r" required>
+            </div>
+
+            <div class="form-group">
+                <label for="avg_f_size_l">Avg. F size (L) (mm):</label>
+                <input type="text" id="avg_f_size_l" name="avg_f_size_l" required>
+            </div>
+
+            <div class="form-group">
+                <label for="avg_f_size_r">Avg. F size (R) (mm):</label>
+                <input type="text" id="avg_f_size_r" name="avg_f_size_r" required>
+            </div>
+
+            <div class="form-group">
+                <label for="endometrium">Endometrium (mm):</label>
+                <input type="text" id="endometrium" name="endometrium" required>
+            </div>
+
+            <input type="submit" value="Predict">
+        </form>
+          <!-- Result section -->
+        {% if result %}
+          <div class="result">
+              Prediction Result: {{ result }}
+          </div>
+      {% endif %}
+    
+    </div>
+</body>
+</html>
