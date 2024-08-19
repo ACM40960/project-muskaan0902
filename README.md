@@ -56,7 +56,7 @@ It contains 541 patient records with 41 unique features, given as follows:
 - Avg. F size (R) (mm): Average follicle size in the right ovary.
 - Endometrium (mm): Thickness of the endometrium.
 
-  ### FILE DESCRIPTION
+### FILE DESCRIPTION
   * PCOS_data: original data file
   * pcodproject.ipynb : jupyter notebook that contains the code of data preparation, exploration, model tuning and evaluation
   * App: folder that contains all the files for the web page development
@@ -64,5 +64,25 @@ It contains 541 patient records with 41 unique features, given as follows:
     2.  best_model.pkl: The classification model
     3. Templates:
     - PCOS_Classifier.html: A webpage that takes all the health parameters as inputs and gives a prediction that the patient will have pcos or not
+   
+### HOW TO RUN THE PROJECT
+*  Clone the Repository:
+Download the project files by cloning the repository to your local machine:
+git clone [repository-url]
+
+* Install Dependencies:
+Navigate to the project directory and install the required Python packages using:
+pip install -r requirements.txt
+
+* Run the Jupyter Notebook:
+Open and run the Jupyter Notebook to train the models and analyze the results:
+jupyter notebook pcos_prediction.ipynb
+
+* Start the Web Application:
+Launch the web application to interact with the model via a user-friendly interface:
+python pcos_app.py
+
+* Access the Web Interface:
+Open your web browser and navigate to http://127.0.0.1:5000/ to use the PCOS prediction form and view the results.  
 
 
