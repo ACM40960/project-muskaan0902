@@ -6,6 +6,9 @@ Polycystic Ovary Syndrome (PCOS) is a prevalent endocrine disorder affecting wom
 ### OBJECTIVE
 This study aims to develop a machine learning model integrated into a web-based application to facilitate the early prediction of PCOS using patient data. 
 
+### INSTALLATION
+All the packages used are available in the Anaconda distribution of python
+
 ### DATASET
 The dataset has been sourced from:  
 https://www.kaggle.com/datasets/prasoonkottarathil/polycystic-ovary-syndrome-pcos which contains all physical and clinical parameters to determine PCOS and infertility related issues .
